@@ -26,7 +26,7 @@ const Homepage = () => {
       </div>
 
       {!open && (
-        <div className="absolute top-6 left-6 z-20 flex items-center gap-2">
+        <div className="absolute top-6 left-3 z-20 flex items-center gap-2">
           <img
             src={factory}
             className="w-26 h-22"
@@ -78,7 +78,7 @@ const Homepage = () => {
           </div>
 
           {open && (
-            <div className="mt-8 h-[420px] flex items-center justify-center text-gray-400">
+            <div className="mt-8 h-[450px] flex items-center justify-center text-gray-400">
               Search results here...
             </div>
           )}

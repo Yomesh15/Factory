@@ -18,9 +18,9 @@ const App = () => {
       {/* for usser  */}
       <Route path='/' element={<Home />} />
       <Route path='/userhome' element={
-        <UserProtected>
+        // <UserProtected>
           <UserHomepage />
-        </UserProtected>
+        // </UserProtected>
       } />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<Signup />} />

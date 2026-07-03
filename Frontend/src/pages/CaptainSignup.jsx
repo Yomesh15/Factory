@@ -53,7 +53,7 @@ const CaptainSignup = () => {
 
       if (res.data.success) {
         toast.success("OTP sent to your email 📧");
-        
+
         localStorage.setItem("otpEmail", form.email);
         localStorage.setItem("otpRole", "captain");
 
@@ -200,7 +200,8 @@ const CaptainSignup = () => {
         <p className="mt-6 text-center text-gray-400">
           Already have a captain account?{" "}
           <Link
-            to="/captain-login"
+            to="/captainlogin"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="text-yellow-400 font-semibold hover:underline"
           >
             Login
@@ -214,6 +215,7 @@ const CaptainSignup = () => {
 
           <Link
             to="/signup"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="mt-3 inline-flex w-full items-center justify-center rounded-xl border border-yellow-400 py-3 font-semibold text-yellow-400 transition-all duration-200 hover:bg-yellow-400 hover:text-black"
           >
             Register as User

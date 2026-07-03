@@ -47,6 +47,8 @@ const Signup = () => {
             role: "user",
           },
         });
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+
       }
     } catch (error) {
       console.log(error);
@@ -66,7 +68,7 @@ const Signup = () => {
   return (
     <div className="min-h-screen bg-black relative flex items-center justify-center px-5 py-10">
 
-      <div className="absolute top-6 left-6">
+      <div className="absolute top-[-5px] left-6">
         <img src={name} alt="Factory" className="w-32 sm:w-40 md:w-48 object-contain" />
       </div>
 
@@ -136,6 +138,7 @@ const Signup = () => {
 
           <Link
             to="/captainsignup"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="mt-3 inline-flex items-center justify-center w-full rounded-xl border border-yellow-400 text-yellow-400 py-3 font-semibold transition-all duration-200 hover:bg-yellow-400 hover:text-black"
           >
             Register as a Captain

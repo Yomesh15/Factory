@@ -42,7 +42,8 @@ const CaptainLogin = () => {
 
         localStorage.setItem("captainToken", res.data.token)
 
-        navigate("/captainhomepage"); 
+        navigate("/captainhomepage");
+        window.scrollTo({ top: 0, behavior: 'smooth' })
       }
     } catch (error) {
       console.log(error);
@@ -61,8 +62,8 @@ const CaptainLogin = () => {
 
   return (
     <div className="min-h-screen bg-black flex justify-center items-center px-5 py-10 relative">
- 
-      <div className="absolute top-6 left-6">
+
+      <div className="absolute top-[15px] left-6">
         <img
           src={name}
           alt="Factory"
@@ -107,11 +108,10 @@ const CaptainLogin = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full rounded-xl py-4 font-semibold transition-all duration-200 ${
-              loading
-                ? "bg-yellow-300 cursor-not-allowed"
-                : "bg-yellow-400 hover:bg-yellow-500 active:scale-95"
-            } text-black`}
+            className={`w-full rounded-xl py-4 font-semibold transition-all duration-200 ${loading
+              ? "bg-yellow-300 cursor-not-allowed"
+              : "bg-yellow-400 hover:bg-yellow-500 active:scale-95"
+              } text-black`}
           >
             {loading ? "Logging in..." : "Login as Captain"}
           </button>
@@ -121,6 +121,7 @@ const CaptainLogin = () => {
           Don't have a captain account?{" "}
           <Link
             to="/captainsignup"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="text-yellow-400 font-semibold hover:underline"
           >
             Register
@@ -134,6 +135,7 @@ const CaptainLogin = () => {
 
           <Link
             to="/login"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="mt-3 inline-flex w-full items-center justify-center rounded-xl border border-yellow-400 py-3 font-semibold text-yellow-400 transition-all duration-200 hover:bg-yellow-400 hover:text-black"
           >
             Login as User

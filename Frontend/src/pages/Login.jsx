@@ -43,6 +43,7 @@ const Login = () => {
         localStorage.setItem("userToken", res.data.token)
 
         navigate("/userhome");
+        window.scrollTo({ top: 0, behavior: 'smooth' })
       }
     } catch (error) {
       console.log(error);
@@ -62,7 +63,7 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-black relative flex items-center justify-center px-5">
 
-      <div className="absolute top-6 left-6">
+      <div className="absolute top-[-5px] left-6">
         <img
           src={name}
           alt="Factory"
@@ -134,6 +135,7 @@ const Login = () => {
           Don't have an account?{" "}
           <Link
             to="/signup"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="font-semibold text-yellow-400 hover:underline"
           >
             Sign Up
@@ -146,6 +148,7 @@ const Login = () => {
 
           <Link
             to="/captainlogin"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="mt-3 inline-flex w-full items-center justify-center rounded-xl border border-yellow-400 py-3 font-semibold text-yellow-400 transition-all duration-200 hover:bg-yellow-400 hover:text-black"
           >
             Login as a Captain
