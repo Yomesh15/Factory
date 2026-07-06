@@ -5,30 +5,46 @@ import { validationResult } from "express-validator";
 
 // register
 export const RegisterUser = async (req, res) => {
-
     try {
+        console.log("====== Register API Called ======");
+
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
+            console.log("❌ Validation Error:", errors.array());
+
             return res.status(400).json({
                 success: false,
                 errors: errors.array(),
             });
         }
 
+        console.log("✅ Validation Passed");
+
         const { fullname, email, password } = req.body;
+
+        console.log("📧 Email:", email);
 
         const exists = await UserModel.findOne({ email });
 
+        console.log("✅ Database Checked");
+
         if (exists) {
+            console.log("❌ User Already Exists");
+
             return res.status(400).json({
                 success: false,
                 message: "User already exists"
             });
         }
 
+        console.log("✅ User Doesn't Exist");
+
         const otp = Math.floor(1000 + Math.random() * 9000);
 
+        console.log("🔑 OTP Generated:", otp);
+
+        console.log("📨 Sending Email...");
 
         await transporter.sendMail({
             from: `"Factory" <${process.env.EMAIL_USER}>`,
@@ -37,15 +53,25 @@ export const RegisterUser = async (req, res) => {
             html: `<h1>Your OTP: ${otp}</h1>`
         });
 
+        console.log("✅ Email Sent Successfully");
+
         global.tempUsers = global.tempUsers || {};
+
+        console.log("🔒 Hashing Password...");
+
+        const hashedPassword = await UserModel.hashPassword(password);
+
+        console.log("✅ Password Hashed");
 
         global.tempUsers[email] = {
             fullname,
             email,
-            password: await UserModel.hashPassword(password),
+            password: hashedPassword,
             otp,
             expiresAt: Date.now() + 5 * 60 * 1000
         };
+
+        console.log("✅ Temp User Saved");
 
         return res.status(200).json({
             success: true,
@@ -53,16 +79,18 @@ export const RegisterUser = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("Register Error:", error);
+        console.error("========== REGISTER ERROR ==========");
+        console.error(error);
+        console.error("Message:", error.message);
+        console.error("Stack:", error.stack);
+        console.error("====================================");
 
         return res.status(500).json({
             success: false,
-            message: error.message,
-            stack: error.stack
+            message: error.message
         });
     }
 };
-
 
 // login 
 export const LoginUser = async (req, res) => {
