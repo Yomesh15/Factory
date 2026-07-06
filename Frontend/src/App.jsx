@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
@@ -11,20 +11,32 @@ import CaptainHomepage from './pages/CaptainHomepage'
 import UserProtected from './ProtectedRoute/UserProtected'
 import CaptainProtected from './ProtectedRoute/CaptainProtected'
 import Logout from './pages/Logout'
+import WaitingforDriver from './components/WaitingforDriver'
+import DriverLocation from './pages/DriverLocation'
+import CaptainHome from './pages/CaptainHome'
+import Map from './pages/Map';
 
 const App = () => {
   return (
     <Routes>
+      {/* rredirect /user */}
+      <Route path="/" element={<Navigate to="/user" replace />} />
+
+
       {/* for usser  */}
-      <Route path='/' element={<Home />} />
+      <Route path='/user' element={<Home />} />
+      <Route path='/captain' element={<CaptainHome />} />
+      <Route path='/map' element={<Map />} />
       <Route path='/userhome' element={
-        // <UserProtected>
+        <UserProtected>
           <UserHomepage />
-        // </UserProtected>
+        </UserProtected>
       } />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<Signup />} />
+      <Route path='/waitingfordriver' element={<WaitingforDriver />} />
       <Route path='/otp-verify' element={<OTPVerify />} />
+      <Route path='/driverlocation' element={<DriverLocation />} />
 
       {/* for captain  */}
       <Route path='/captainhomepage' element={

@@ -5,7 +5,7 @@ const CaptainProtected = ({ children }) => {
   const token = localStorage.getItem("captainToken");
 
   if (!token) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/captainlogin" replace />;
   }
 
   return children;

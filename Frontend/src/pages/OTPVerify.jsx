@@ -85,7 +85,7 @@ const OTPVerify = () => {
 
         toast.success("Registration Successful 🎉");
 
-        navigate(role === "captain" ? "/captain-login" : "/login");
+        navigate(role === "captain" ? "/captainlogin" : "/login");
       }
     } catch (error) {
       toast.error(
