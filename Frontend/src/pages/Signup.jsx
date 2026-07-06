@@ -31,7 +31,7 @@ const Signup = () => {
       setLoading(true);
 
       const res = await axios.post(
-       ` https://factory-pw5f.onrender.com/user/register`,
+        `${import.meta.env.VITE_API_URL}/user/register`,
         form
       );
 

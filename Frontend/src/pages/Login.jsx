@@ -30,7 +30,7 @@ const Login = () => {
       setLoading(true);
 
       const res = await axios.post(
-        `https://factory-pw5f.onrender.com/user/login`,
+        `${import.meta.env.VITE_API_URL}/user/login`,
         form,
         {
           withCredentials: true,
