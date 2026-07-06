@@ -15,7 +15,7 @@ export const RegisterUser = async (req, res) => {
                 errors: errors.array(),
             });
         }
-        
+
         const { fullname, email, password } = req.body;
 
         const exists = await UserModel.findOne({ email });
@@ -53,9 +53,12 @@ export const RegisterUser = async (req, res) => {
         });
 
     } catch (error) {
+        console.error("Register Error:", error);
+
         return res.status(500).json({
             success: false,
-            message: error.message
+            message: error.message,
+            stack: error.stack
         });
     }
 };
