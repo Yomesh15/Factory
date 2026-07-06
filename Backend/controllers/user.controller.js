@@ -46,12 +46,19 @@ export const RegisterUser = async (req, res) => {
 
         console.log("📨 Sending Email...");
 
-        await transporter.sendMail({
-            from: `"Factory" <${process.env.EMAIL_USER}>`,
-            to: email,
-            subject: "Verify Your Email - Factory",
-            html: `<h1>Your OTP: ${otp}</h1>`
-        });
+        try {
+            await transporter.sendMail({
+                from: `"Factory" <${process.env.EMAIL_USER}>`,
+                to: email,
+                subject: "Verify Your Email - Factory",
+                html: `<h1>Your OTP: ${otp}</h1>`
+            });
+
+            console.log("✅ Email Sent Successfully");
+        } catch (mailError) {
+            console.error("MAIL ERROR:", mailError);
+            throw mailError;
+        }
 
         console.log("✅ Email Sent Successfully");
 
